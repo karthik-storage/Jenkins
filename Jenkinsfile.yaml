@@ -1,7 +1,5 @@
 pipeline:
     agent: any
-    environment:
-        ENV_NAME = "$(env.BRANCH_NAME)"
     stages:
     - stage: Version Checker
       steps:
@@ -9,13 +7,4 @@ pipeline:
       - bat "git --version"
     - stage: Checkout SCM
       steps:
-      - "checkout([$class: 'GitSCM', branches: [[name: 'env.BRANCH_NAME']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
-      - sh "echo Branch name is: $(env.BRANCH_NAME)"
-    - stage: Compile
-      steps:
-      - bat "python Hello.py"
-    - stage: Archiving and copy the Artifacts
-      steps:
-      - bat "ECHO Archiving and copying artifacts"
-      - "zip archive: true, dir: '', exclude: '', glob: '', zipFile: 'Archieved.zip'"
-    
+      - "checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
