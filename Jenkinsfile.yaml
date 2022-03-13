@@ -8,6 +8,3 @@ pipeline:
     - stage: Checkout SCM
       steps:
       - "checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
-    - stage: Discard Old Builds
-      steps:
-      - "properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '1', numToKeepStr: '2'))])"
