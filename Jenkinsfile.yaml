@@ -15,4 +15,4 @@ pipeline:
   
     - stage: Archiving Artifacts
       steps:
-      - "archiveArtifacts artifacts: '**/*.zip', followSymlinks: false, onlyIfSuccessful: true"
+      - "archiveArtifacts artifacts: '**/*.py', followSymlinks: false, onlyIfSuccessful: true"
