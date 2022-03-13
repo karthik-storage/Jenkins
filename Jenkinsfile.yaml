@@ -8,3 +8,15 @@ pipeline:
     - stage: Checkout SCM
       steps:
       - "checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
+    
+    - stage: SW Compilation
+      steps:
+      - bat "python Hello.py"
+    
+    - stage: QAC Warnings
+      steps:
+      - "qacReport runWhenSuccess: true, sourceQAFramework: [addBuildNumber: true, analysisSettings: false, assembleSupportAnalytics: false, cmaProjectName: '', customCpuThreads: false, customLicenseServerAddress: '', downloadUnifiedProjectDefinition: false, enableDependencyMode: false, generateCrr: false, generateHis: false, generateMdr: false, generatePreprocess: false, generateReport: false, generateReportOnAnalysisError: false, generateSup: false, loginToQAV: false, maxNumThreads: '', performCrossModuleAnalysis: false, projectConfiguration: '', publishToQAV: false, qaInstallation: '', qaProject: '', qaVerifyProjectName: '', reuseCmaDb: false, stopWhenFail: false, unifiedProjectName: '', uploadSnapshotName: '', uploadSourceCode: 'NONE', uploadWhenStable: false, useCustomLicenseServer: false, useDiskStorage: false]"
+      
+    - stage: Archiving Artifacts
+      steps:
+      - "archiveArtifacts artifacts: '**/*.zip', followSymlinks: false, onlyIfSuccessful: true"
