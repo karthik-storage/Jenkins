@@ -16,4 +16,3 @@ pipeline:
     - stage: Archiving Artifacts
       steps:
       - "archiveArtifacts artifacts: '**/*.py', followSymlinks: false, onlyIfSuccessful: true"
-      - "copyArtifacts filter: '*.py', fingerprintArtifacts: true"
