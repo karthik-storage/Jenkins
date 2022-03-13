@@ -16,4 +16,4 @@ pipeline:
     - stage: Archiving Artifacts
       steps:
       - "archiveArtifacts artifacts: '**/*.py', followSymlinks: false, onlyIfSuccessful: true"
-      - "copyArtifacts filter: '*.py', fingerprintArtifacts: true, flatten: true, optional: true, selector: upstream(allowUpstreamDependencies: true, fallbackToLastSuccessful: true)"
+      - "copyArtifacts filter: '*.py', fingerprintArtifacts: true"
