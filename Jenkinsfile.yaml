@@ -16,8 +16,4 @@ pipeline:
     - stage: Archiving Artifacts
       steps:
       - "archiveArtifacts artifacts: '**/*.py', followSymlinks: false, onlyIfSuccessful: true"
-      - "([$class: 'CopyArtifact',
-          projectName: 'jenkins_practice',
-          filter: '*.zip', 
-          selector: [$class: 'SpecificBuildSelector', buildName: 'currentBuild.displayName', buildNumber: 'currentBuild.number']
-        ])"
+      - "([$class: 'CopyArtifact', projectName: 'jenkins_practice', filter: '*.zip', selector: [$class: 'SpecificBuildSelector', buildName: 'currentBuild.displayName', buildNumber: 'currentBuild.number']])"
