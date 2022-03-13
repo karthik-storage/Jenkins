@@ -7,7 +7,7 @@ pipeline:
       - bat "git --version"
     - stage: Checkout SCM
       steps:
-      - "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
+      - "checkout([$class: 'GitSCM', branches: [[name: 'env.BRANCH_NAME']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
     - stage: Compile
       steps:
       - bat "python Hello.py"
