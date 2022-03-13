@@ -1,0 +1,18 @@
+pipeline:
+    agent: any
+    stages:
+    - stage: Version Checker
+      steps:
+      - bat "java -version"
+      - bat "git --version"
+    - stage: Checkout SCM
+      steps:
+      - "checkout([$class: 'GitSCM', branches: [name: '*/feature/*'], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', name: 'origin', refspec: '+refs/heads/*:refs/remotes/origin/*', url: 'git@bitbucket.org:kv_karthik/jenkins_project.git']]])"
+    - stage: Compile
+      steps:
+      - bat "python Hello.py"
+    - stage: Archiving and copy the Artifacts
+      steps:
+      - bat "ECHO Archiving and copying artifacts"
+      - "zip archive: true, dir: '', exclude: '', glob: '', zipFile: 'Archieved.zip'"
+    
