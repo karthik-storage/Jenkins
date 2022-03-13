@@ -10,4 +10,4 @@ pipeline:
       - "checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true], [$class: 'CleanCheckout', deleteUntrackedNestedRepositories: true], [$class: 'GitLFSPull']], userRemoteConfigs: [[credentialsId: '0b148d18-45d7-4a0d-b7af-46cc185cf5e4', url: 'git@github.com:karthik-storage/jenkins_practice.git']]])"
     - stage: Discard Old Builds
       steps:
-      - "options { buildDiscarder(logRotator(numToKeepStr: '1')) }"
+      - "properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '1', numToKeepStr: '2')), <object of type com.suryagaddipati.jenkins.SlaveUtilizationProperty>, pipelineTriggers([BitbucketWebhookMultibranchTrigger(pullRequestTrigger: true, refTrigger: true), [$class: 'BitBucketMultibranchTrigger', overrideUrl: 'git@github.com:karthik-storage/jenkins_practice.git'], [$class: 'ComputedFolderWebHookTrigger', token: 'git@github.com:karthik-storage/jenkins_practice.git']])])"
